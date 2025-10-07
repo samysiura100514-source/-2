@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Безпека додатків - Основи кібербезпеки</title>
+  <meta name="description" content="Дізнайтеся, що таке безпека додатків, які загрози існують та як захистити свої програми від атак">
+  <meta name="keywords" content="безпека додатків, кіберзагрози, захист програм, інформаційна безпека">
+
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      color: #00ffff;
+      background-color: #000814;
+    }
+
+    .header {
+      width: 100%;
+      height: 60px;
+      border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+
+    .container-xl {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 15px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      color: #00e6e6;
+      text-shadow: 0 0 10px #00ffff, 0 0 20px #0074D9;
+      margin: 0;
+      transition: 0.3s;
+    }
+
+    .logo span {
+      color: #ffff00;
+    }
+
+    .navmenu ul {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navmenu a {
+      color: #b0c4de;
+      text-decoration: none;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      position: relative;
+      transition: 0.3s ease;
+    }
+
+    .navmenu a:hover,
+    .navmenu a.active {
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff, 0 0 30px #0074D9;
+    }
+
+    .navmenu a::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: #00ffff;
+      box-shadow: 0 0 10px #00ffff;
+      transition: width 0.3s;
+    }
+
+    .navmenu a:hover::after,
+    .navmenu a.active::after {
+      width: 100%;
+    }
+
+    .hero {
+      background: radial-gradient(circle at center, #001f3f 0%, #000814 100%);
+      text-align: center;
+      padding: 160px 20px 120px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, #00ffff, #0074D9, #001f3f, #00ffff);
+      animation: rotate 10s linear infinite;
+      filter: blur(80px);
+      opacity: 0.15;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      color: #00e6e6;
+      text-shadow: 0 0 15px #00ffff, 0 0 30px #0074D9;
+      z-index: 2;
+      position: relative;
+      animation: glow 3s ease-in-out infinite alternate;
+      margin-bottom: 40px;
+    }
+
+    .hero img {
+      width: 200px;
+      opacity: 0.9;
+      animation: float 4s ease-in-out infinite;
+      z-index: 2;
+      position: relative;
+      transition: transform 0.4s, filter 0.4s;
+    }
+
+    .hero img:hover {
+      transform: scale(1.1) rotate(5deg);
+      filter: drop-shadow(0 0 20px #00ffff);
+    }
+
+    .module-item {
+      background: rgba(215, 228, 241, 0.8);
+      border: 1px solid #00ffff40;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 40px auto;
+      max-width: 400px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .module-item:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #0074D9, 0 0 20px #00ffff;
+      }
+
+      to {
+        text-shadow: 0 0 25px #00ffff, 0 0 50px #0074D9;
+      }
+    }
+
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+  </style>
+
+<body class="about-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Головна</a></li>
+          <li><a href="about.html">Що таке кібербезпека?</a></li>
+          <li><a href="Мережева безпека.html">Мережева безпека</a></li>
+          <li><a href="Безпека додатків.html" class="active">Безпека додатків</a></li>
+          <li><a href="Хмарна безпека.html" >Хмарна безпека</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <div class="page-title dark-background" style="background-image: url('assets/img/123.webp');">
+      <div class="container position-relative">
+        <h1>Безпека додатків</h1>
+        <p class="subtitle">Захист програмного забезпечення та даних</p>
+      </div>
+    </div>
+
+    <section id="about" class="about section">
+
+      <div class="container">
+
+        <div class="row position-relative">
+
+          <div class="col-lg-7 about-img" data-aos="zoom-out" data-aos-delay="200">
+            <img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80" alt="Безпека додатків" class="custom-img">
+          </div>
+
+          <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
+            <h2 class="text-center">Що таке безпека додатків?</h2>
+            <div class="our-story">
+              <p>Безпека додатків – це практика захисту програмного забезпечення від атак та вразливостей, які можуть спричинити втрату даних, порушення конфіденційності або перерви в роботі бізнес-процесів.</p>
+              
+              <h3>Основні принципи безпеки додатків</h3>
+              <ul>
+                <li><i class="bi bi-check-circle"></i> <span><strong>Валідація даних</strong> - перевірка всіх вхідних даних для запобігання ін’єкцій</span></li>
+                <li><i class="bi bi-check-circle"></i> <span><strong>Контроль доступу</strong> - забезпечення, що тільки авторизовані користувачі мають доступ</span></li>
+                <li><i class="bi bi-check-circle"></i> <span><strong>Шифрування</strong> - захист чутливої інформації під час зберігання та передачі</span></li>
+              </ul>
+              
+              <h3>Чому це важливо?</h3>
+              <p>Вразливості в додатках можуть призвести до витоку даних, фінансових втрат та втрати довіри користувачів. Захист додатків на етапі розробки знижує ризики атак.</p>
+
+              <div class="watch-video d-flex align-items-center position-relative">
+                <i class="bi bi-play-circle"></i>
+                <a href="https://www.youtube.com/watch?v=3t0aPaxfZok" class="glightbox stretched-link">Переглянути відео про безпеку додатків</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+        <section id="stats-counter" class="stats-counter section">
+
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Статистика загроз додатків</h2>
+        <p>Навіть найпоширеніші програми можуть мати вразливості</p>
+      </div>
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item d-flex align-items-center w-100 h-100">
+              <i class="bi bi-shield-exclamation color-blue flex-shrink-0"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end="1050" data-purecounter-duration="1" class="purecounter"></span>
+                <p>Виявлених вразливостей щомісяця</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item d-flex align-items-center w-100 h-100">
+              <i class="bi bi-currency-dollar color-orange flex-shrink-0"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end="4" data-purecounter-duration="1" class="purecounter"></span>
+                <p>Мільярди $ збитків щороку</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item d-flex align-items-center w-100 h-100">
+              <i class="bi bi-clock color-green flex-shrink-0"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end="180" data-purecounter-duration="1" class="purecounter"></span>
+                <p>Днів до виправлення вразливості</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item d-flex align-items-center w-100 h-100">
+              <i class="bi bi-person-check color-pink flex-shrink-0"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end="2" data-purecounter-duration="1" class="purecounter"></span>
+                <p>Мільйонів спеціалістів потрібно</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="alt-services" class="alt-services section">
+
+      <div class="container">
+
+        <div class="row justify-content-around gy-4">
+          <div class="features-image col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <img src="assets/img/2.jpg" alt="Abstract digital shield with glowing lines and icons representing cybersecurity threats such as code injection and data leaks set against a dark blue background with a modern technological atmosphere">
+          </div>
+
+          <div class="col-lg-5 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+            <h3>Основні типи загроз додатків</h3>
+            <p>Навіть безпечні на перший погляд додатки можуть мати уразливості</p>
+
+            <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-shield-exclamation flex-shrink-0"></i>
+              <div>
+                <h4><a>Ін’єкції коду</a></h4>
+                <p>SQL, XSS та інші атаки, які дозволяють виконувати небажаний код</p>
+              </div>
+            </div>
+
+            <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-lock flex-shrink-0"></i>
+              <div>
+                <h4><a>Помилки автентифікації</a></h4>
+                <p>Недостатній контроль доступу або слабкі паролі можуть бути використані зловмисниками</p>
+              </div>
+            </div>
+
+            <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="500">
+              <i class="bi bi-key flex-shrink-0"></i>
+              <div>
+                <h4><a>Витік даних</a></h4>
+                <p>Невірне зберігання або передача чутливої інформації</p>
+              </div>
+            </div>
+
+            <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="600">
+              <i class="bi bi-hdd-network flex-shrink-0"></i>
+              <div>
+                <h4><a>DDoS для додатків</a></h4>
+                <p>Перевантаження серверів і сервісів через масові запити</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="alt-services-2" class="alt-services-2 section">
+
+      <div class="container">
+
+        <div class="row justify-content-around gy-4">
+
+          <div class="col-lg-6 d-flex flex-column justify-content-center order-2 order-lg-1" data-aos="fade-up" data-aos-delay="100">
+            <h3>Як захистити додатки</h3>
+            <p>Реалізація базових заходів безпеки допомагає уникнути витоків та атак</p>
+
+            <div class="row">
+
+              <div class="col-lg-6 icon-box d-flex">
+                <i class="bi bi-shield-check flex-shrink-0"></i>
+                <div>
+                  <h4>Регулярне тестування</h4>
+                  <p>Використання сканерів вразливостей та penetration testing</p>
+                </div>
+              </div>
+
+              <div class="col-lg-6 icon-box d-flex">
+                <i class="bi bi-key-fill flex-shrink-0"></i>
+                <div>
+                  <h4>Сильна автентифікація</h4>
+                  <p>Використання складних паролів та двофакторної автентифікації</p>
+                </div>
+              </div>
+
+              <div class="col-lg-6 icon-box d-flex">
+                <i class="bi bi-arrow-clockwise flex-shrink-0"></i>
+                <div>
+                  <h4>Оновлення додатків</h4>
+                  <p>Виправлення помилок та уразливостей відразу після їх виявлення</p>
+                </div>
+              </div>
+
+              <div class="col-lg-6 icon-box d-flex">
+                <i class="bi bi-eye flex-shrink-0"></i>
+                <div>
+                  <h4>Аудит коду</h4>
+                  <p>Перевірка коду на наявність потенційних проблем безпеки</p>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="features-image col-lg-5 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="200">
+            <img src="https://images.unsplash.com/photo-1593642532973-d31b6557fa68?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80" alt="Захист додатків">
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="team" class="team section">
+
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Напрями безпеки додатків</h2>
+        <p>Кожен напрямок вирішує специфічні завдання захисту програмного забезпечення</p>
+      </div>
+
+      <div class="container">
+
+        <div class="row gy-5">
+
+          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="100">
+            <div class="member-img">
+              <img src="assets/img/5.webp" class="img-fluid" alt="Безпека коду">
+            </div>
+            <div class="member-info text-center">
+              <h4>Безпека коду</h4>
+              <span>Перевірка та захист вихідного коду</span>
+              <p>Виявлення помилок і вразливостей у коді на етапі розробки</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="200">
+            <div class="member-img">
+              <img src="assets/img/1234.jpg" class="img-fluid" alt="Тестування безпеки">
+            </div>
+            <div class="member-info text-center">
+              <h4>Тестування безпеки</h4>
+              <span>Penetration testing та аудит</span>
+              <p>Регулярне тестування додатків на наявність уразливостей</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="300">
+            <div class="member-img">
+              <img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600&q=80" class="img-fluid" alt="Контроль доступу">
+            </div>
+            <div class="member-info text-center">
+              <h4>Контроль доступу</h4>
+              <span>Управління правами користувачів</span>
+              <p>Забезпечення правильних прав доступу та автентифікації</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

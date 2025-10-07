@@ -25,20 +25,226 @@
   <link href="assets/css/main.css" rel="stylesheet">
 
 </head>
+  <style>
+/* === Кібер-шапка === */
+body {
+  margin: 0;
+  background: #000814;
+  font-family: 'Orbitron', sans-serif;
+  color: #00ffff;
+}
 
+/* Шапка */
+.header {
+  width: 100%;
+  height: 60px;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.container-xl {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Логотип */
+.logo {
+  font-size: 1.5rem;
+  color: #00e6e6;
+  text-shadow: 0 0 10px #00ffff, 0 0 20px #0074D9;
+  margin: 0;
+  transition: 0.3s;
+}
+.logo span {
+  color: #ffff00;
+}
+
+/* Меню */
+.navmenu ul {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.navmenu a {
+  color: #b0c4de;
+  text-decoration: none;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+.navmenu a:hover,
+.navmenu a.active {
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff, 0 0 30px #0074D9;
+}
+
+.navmenu a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #00ffff;
+  box-shadow: 0 0 10px #00ffff;
+  transition: width 0.3s;
+}
+
+.navmenu a:hover::after,
+.navmenu a.active::after {
+  width: 100%;
+}
+</style>
+
+
+<style>
+  body {
+    background-color: #0051fe;
+    font-family: 'Orbitron', sans-serif;
+    color: #00ffff;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  /* Навігаційна панель */
+  .navbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px 60px;
+    background: rgba(0, 10, 20, 0.8);
+    border-bottom: 1px solid #00ffff40;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+
+  .navbar a {
+    color: #00ffff;
+    text-decoration: none;
+    margin-left: 30px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+
+  .navbar a:hover {
+    color: #00e6e6;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #0074D9;
+  }
+
+  /* Герой-секція */
+  .hero {
+    background: radial-gradient(circle at center, #001f3f 0%, #000814 100%);
+    text-align: center;
+    padding: 160px 20px 120px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, #00ffff, #0074D9, #001f3f, #00ffff);
+    animation: rotate 10s linear infinite;
+    filter: blur(80px);
+    opacity: 0.15;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    color: #00e6e6;
+    text-shadow: 0 0 15px #00ffff, 0 0 30px #0074D9;
+    z-index: 2;
+    position: relative;
+    animation: glow 3s ease-in-out infinite alternate;
+    margin-bottom: 40px;
+  }
+
+  .hero img {
+    width: 200px;
+    opacity: 0.9;
+    animation: float 4s ease-in-out infinite;
+    z-index: 2;
+    position: relative;
+    transition: transform 0.4s, filter 0.4s;
+  }
+
+  .hero img:hover {
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 0 20px #00ffff);
+  }
+
+  .module-item {
+    background: rgba(215, 228, 241, 0.8);
+    border: 1px solid #00ffff40;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 40px auto;
+    max-width: 400px;
+    box-shadow: 0 0 15px rgba(0,255,255,0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .module-item:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 0 25px rgba(0,255,255,0.5);
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes glow {
+    from {
+      text-shadow: 0 0 10px #0074D9, 0 0 20px #00ffff;
+    }
+    to {
+      text-shadow: 0 0 25px #00ffff, 0 0 50px #0074D9;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+</style>
 <body class="about-page">
 
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
-
-      <a href="index.html" class="logo d-flex align-items-center">
-        <h1 class="sitename">Кібербезпека</h1> <span>.</span>
-      </a>
-
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="index.html">Головна</a></li>
           <li><a href="about.html" class="active">Що таке кібербезпека?</a></li>
+          <li><a href="Мережева безпека.html">Мережева безпека</a></li>
+          <li><a href="Безпека додатків.html" >Безпека додатків</a></li>
+          <li><a href="Хмарна безпека.html" >Хмарна безпека</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -166,7 +372,7 @@
             <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="300">
               <i class="bi bi-shield-exclamation flex-shrink-0"></i>
               <div>
-                <h4><a href="" class="stretched-link">Віруси та шкідливе ПЗ</a></h4>
+                <h4><a>Віруси та шкідливе ПЗ</a></h4>
                 <p>Програмне забезпечення, призначене для пошкодження комп'ютерів, серверів або мереж</p>
               </div>
             </div>
@@ -174,7 +380,7 @@
             <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="400">
               <i class="bi bi-lock flex-shrink-0"></i>
               <div>
-                <h4><a href="" class="stretched-link">Фішинг</a></h4>
+                <h4><a>Фішинг</a></h4>
                 <p>Спроба отримати конфіденційну інформацію шляхом маскування під заслужену особу або компанію</p>
               </div>
             </div>
@@ -190,7 +396,7 @@
             <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="600">
               <i class="bi bi-hdd-network flex-shrink-0"></i>
               <div>
-                <h4><a href="" class="stretched-link">DDoS-атаки</a></h4>
+                <h4><a>DDoS-атаки</a></h4>
                 <p>Перевантаження системи великою кількістю запитів, що робить її недоступною для законних користувачів</p>
               </div>
             </div>

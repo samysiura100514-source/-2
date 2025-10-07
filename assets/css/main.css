@@ -181,6 +181,7 @@ h6 {
 
 @media (min-width: 1200px) {
   .navmenu {
+    margin-right: auto; /* автоматично займає вільне місце справа */
     padding: 0;
   }
 
